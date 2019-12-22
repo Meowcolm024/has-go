@@ -36,7 +36,15 @@
 				"command": "has-go.stackrun",
 				"title": "Stack Run"
 			}
-		]
+		],
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "has-go.runfile",
+					"when": "editorLangId == haskell"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"postinstall": "node ./node_modules/vscode/bin/install",

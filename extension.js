@@ -18,7 +18,6 @@ function activate(context) {
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
 	let run_ghci = vscode.commands.registerCommand('has-go.ghci', function () {
-		// The code you place here will be executed every time your command is executed
 		let terminal = vscode.window.createTerminal("GHCi");
 		let a = vscode.workspace.workspaceFolders[0].uri.path
 		let text = vscode.workspace.textDocuments[0]
@@ -47,9 +46,15 @@ function activate(context) {
 		terminal.show();
 	});
 
+	let stat = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 13);
+	stat.text = "Load GHCi"
+	stat.command = 'has-go.ghci'
+	stat.show()
+
 	context.subscriptions.push(run_ghci);
 	context.subscriptions.push(run_haskell);
 	context.subscriptions.push(stack_run);
+	context.subscriptions.push(stat);
 }
 exports.activate = activate;
 
