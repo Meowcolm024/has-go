@@ -1,0 +1,43 @@
+{
+	"name": "has-go",
+	"displayName": "Haskell Runner",
+	"description": "A simple extension to run haskell file",
+	"version": "0.0.1",
+	"publisher": "Meowcolm024",
+	"license": "MIT",
+	"engines": {
+		"vscode": "^1.41.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:has-go.ghci",
+		"onCommand:has-go.runfile",
+		"onCommand:has-go.stackrun"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "has-go.ghci",
+				"title": "Load GHCi"
+			},
+			{
+				"command": "has-go.runfile",
+				"title": "Run Haskell File"
+			}
+		]
+	},
+	"scripts": {
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^3.1.4",
+		"vscode": "^1.1.25",
+		"eslint": "^4.11.0",
+		"@types/node": "^8.10.25",
+		"@types/mocha": "^2.2.42"
+	}
+}
