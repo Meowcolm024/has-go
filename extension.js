@@ -41,8 +41,15 @@ function activate(context) {
 		terminal.show();
 	});
 
+	let stack_run = vscode.commands.registerCommand('has-go.stackrun', function () {
+		let terminal = vscode.window.createTerminal("Stack Run");
+		terminal.sendText('stack run');
+		terminal.show();
+	});
+
 	context.subscriptions.push(run_ghci);
 	context.subscriptions.push(run_haskell);
+	context.subscriptions.push(stack_run);
 }
 exports.activate = activate;
 

@@ -2,14 +2,19 @@
 	"name": "has-go",
 	"displayName": "Haskell Runner",
 	"description": "A simple extension to run haskell file",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"publisher": "Meowcolm024",
 	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Meowcolm024/has-go"
+	},
 	"engines": {
 		"vscode": "^1.41.0"
 	},
 	"categories": [
-		"Other"
+		"Other",
+		"Programming Languages"
 	],
 	"activationEvents": [
 		"onCommand:has-go.ghci",
@@ -26,6 +31,10 @@
 			{
 				"command": "has-go.runfile",
 				"title": "Run Haskell File"
+			},
+			{
+				"command": "has-go.stackrun",
+				"title": "Stack Run"
 			}
 		]
 	},
