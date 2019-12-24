@@ -2,7 +2,7 @@
 	"name": "has-go",
 	"displayName": "Haskell Runner",
 	"description": "A simple extension to run haskell file",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"publisher": "Meowcolm024",
 	"license": "MIT",
 	"repository": {
@@ -17,6 +17,7 @@
 		"Programming Languages"
 	],
 	"activationEvents": [
+		"onLanguage:haskell",
 		"onCommand:has-go.ghci",
 		"onCommand:has-go.runfile",
 		"onCommand:has-go.stackrun"
@@ -44,6 +45,26 @@
 					"when": "editorLangId == haskell"
 				}
 			]
+		},
+		"configuration": {
+			"title": "Haskell Runner",
+			"properties": {
+				"has-go.loadGHCiButton": {
+					"type": "boolean",
+					"default": true,
+					"description": "Show the GHCi Button"
+				},
+				"has-go.runFileButton": {
+					"type": "boolean",
+					"default": true,
+					"description": "Show the Run File Button"
+				},
+				"has-go.stackRunButton": {
+					"type": "boolean",
+					"default": false,
+					"description": "Show the Stack Run Button"
+				}
+			}
 		}
 	},
 	"scripts": {

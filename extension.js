@@ -2,6 +2,10 @@
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
 
+const show_ghci = vscode.workspace.getConfiguration().get('has-go.loadGHCiButton');
+const show_run = vscode.workspace.getConfiguration().get('has-go.runFileButton');
+const show_stack = vscode.workspace.getConfiguration().get('has-go.stackRunButton');
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
@@ -17,7 +21,7 @@ function activate(context) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
-	let run_ghci = vscode.commands.registerCommand('has-go.ghci', function () {
+	let runGhci = vscode.commands.registerCommand('has-go.ghci', function () {
 		let terminal = vscode.window.createTerminal("GHCi");
 		let a = vscode.workspace.workspaceFolders[0].uri.path
 		let text = vscode.workspace.textDocuments[0]
@@ -31,7 +35,7 @@ function activate(context) {
 		terminal.show();
 	});
 
-	let run_haskell = vscode.commands.registerCommand('has-go.runfile', function () {
+	let runHaskell = vscode.commands.registerCommand('has-go.runfile', function () {
 		let terminal = vscode.window.createTerminal("Run Haskell");
 		let a = vscode.workspace.workspaceFolders[0].uri.path
 		let b = vscode.workspace.textDocuments[0].fileName
@@ -40,21 +44,40 @@ function activate(context) {
 		terminal.show();
 	});
 
-	let stack_run = vscode.commands.registerCommand('has-go.stackrun', function () {
+	let stackRun = vscode.commands.registerCommand('has-go.stackrun', function () {
 		let terminal = vscode.window.createTerminal("Stack Run");
 		terminal.sendText('stack run');
 		terminal.show();
 	});
 
-	let stat = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 13);
-	stat.text = "Load GHCi"
-	stat.command = 'has-go.ghci'
-	stat.show()
+	if (show_ghci) {
+		let stat = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 10);
+		stat.text = "Load GHCi"
+		stat.command = 'has-go.ghci'
+		stat.show()
+		context.subscriptions.push(stat);
+	}
 
-	context.subscriptions.push(run_ghci);
-	context.subscriptions.push(run_haskell);
-	context.subscriptions.push(stack_run);
-	context.subscriptions.push(stat);
+	if (show_run) {
+		let stat = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 10);
+		stat.text = "Run File"
+		stat.command = 'has-go.runfile'
+		stat.show()
+		context.subscriptions.push(stat);
+	}
+
+	if (show_stack) {
+		let stat = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 10);
+		stat.text = "Stack Run"
+		stat.command = 'has-go.stackrun'
+		stat.show()
+		context.subscriptions.push(stat);
+	}
+
+	context.subscriptions.push(runGhci);
+	context.subscriptions.push(runHaskell);
+	context.subscriptions.push(stackRun);
+	
 }
 exports.activate = activate;
 
