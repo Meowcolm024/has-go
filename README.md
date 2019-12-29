@@ -1,6 +1,7 @@
-# Haskell Runner (has-go)
+# Haskell Runner
 
 ![GitHub](https://img.shields.io/github/license/meowcolm024/has-go)
+![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/Meowcolm024.has-go)
 
 A simple extension to run *Haskell*.
 

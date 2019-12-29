@@ -6,6 +6,10 @@ All notable changes to the "has-go" extension will be documented in this file.
 
 - Nothing
 
+## [0.2.1]
+
+- Added args for `stack run`
+
 ## [0.2.0]
 
 - Added buttons in the `Status Bar` and configurations

@@ -46,7 +46,8 @@ function activate(context) {
 
 	let stackRun = vscode.commands.registerCommand('has-go.stackrun', function () {
 		let terminal = vscode.window.createTerminal("Stack Run");
-		terminal.sendText('stack run');
+		const stack_args = vscode.workspace.getConfiguration().get('has-go.stackArgs');
+		terminal.sendText('stack run ' + stack_args);
 		terminal.show();
 	});
 
