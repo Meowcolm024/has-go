@@ -24,7 +24,7 @@ function activate(context) {
 	let runGhci = vscode.commands.registerCommand('has-go.ghci', function () {
 		let terminal = vscode.window.createTerminal("GHCi");
 		let a = vscode.workspace.workspaceFolders[0].uri.path
-		let text = vscode.workspace.textDocuments[0]
+		let text = vscode.window.activeTextEditor.document
 		let b = text.fileName
 		if (text.languageId == 'haskell') {
 			let c = b.replace(a + "/", "")
@@ -38,7 +38,7 @@ function activate(context) {
 	let runHaskell = vscode.commands.registerCommand('has-go.runfile', function () {
 		let terminal = vscode.window.createTerminal("Run Haskell");
 		let a = vscode.workspace.workspaceFolders[0].uri.path
-		let b = vscode.workspace.textDocuments[0].fileName
+		let b = vscode.window.activeTextEditor.document.fileName
 		let c = b.replace(a + "/", "")
 		terminal.sendText('runhaskell ' + c);
 		terminal.show();

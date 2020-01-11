@@ -6,6 +6,10 @@ All notable changes to the "has-go" extension will be documented in this file.
 
 - Nothing
 
+## [0.2.2]
+
+- Fixed issue that `Load GHCi` and `Run File` might not run the right file int the last version
+
 ## [0.2.1]
 
 - Added args for `stack run`
