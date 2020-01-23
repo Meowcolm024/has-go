@@ -2,9 +2,11 @@
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
 
+// Load config
 const show_ghci = vscode.workspace.getConfiguration().get('has-go.loadGHCiButton');
 const show_run = vscode.workspace.getConfiguration().get('has-go.runFileButton');
 const show_stack = vscode.workspace.getConfiguration().get('has-go.stackRunButton');
+const tool = vscode.workspace.getConfiguration().get('has-go.haskellTool');
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -45,9 +47,9 @@ function activate(context) {
 	});
 
 	let stackRun = vscode.commands.registerCommand('has-go.stackrun', function () {
-		let terminal = vscode.window.createTerminal("Stack Run");
+		let terminal = vscode.window.createTerminal(tool + " Run");
 		const stack_args = vscode.workspace.getConfiguration().get('has-go.stackArgs');
-		terminal.sendText('stack run ' + stack_args);
+		terminal.sendText(tool.toLowerCase() + ' run ' + stack_args);
 		terminal.show();
 	});
 
@@ -69,7 +71,7 @@ function activate(context) {
 
 	if (show_stack) {
 		let stat = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 10);
-		stat.text = "Stack Run"
+		stat.text = tool + " Run"
 		stat.command = 'has-go.stackrun'
 		stat.show()
 		context.subscriptions.push(stat);
@@ -78,7 +80,7 @@ function activate(context) {
 	context.subscriptions.push(runGhci);
 	context.subscriptions.push(runHaskell);
 	context.subscriptions.push(stackRun);
-	
+
 }
 exports.activate = activate;
 

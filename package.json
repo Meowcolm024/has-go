@@ -2,7 +2,7 @@
 	"name": "has-go",
 	"displayName": "Haskell Runner",
 	"description": "A simple extension to run haskell file",
-	"version": "0.2.2",
+	"version": "0.2.3",
 	"publisher": "Meowcolm024",
 	"license": "MIT",
 	"repository": {
@@ -63,12 +63,21 @@
 				"has-go.stackRunButton": {
 					"type": "boolean",
 					"default": false,
-					"description": "Show the Stack Run Button"
+					"description": "Show the Stack Run (Cabal Run) Button"
 				},
 				"has-go.stackArgs": {
 					"type": "string",
 					"default": "",
-					"description": "Arguments passed to stack run"
+					"description": "Arguments passed to stack run (Or cabal run)"
+				},
+				"has-go.haskellTool": {
+					"type": "string",
+					"enum": [
+						"Stack",
+						"Cabal"
+					],
+					"default": "stack",
+					"description": "Select the Haskell tool will be used"
 				}
 			}
 		}
