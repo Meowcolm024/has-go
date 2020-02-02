@@ -6,6 +6,10 @@ All notable changes to the "has-go" extension will be documented in this file.
 
 - Nothing
 
+## [0.2.4]
+
+- Label fix
+
 ## [0.2.3]
 
 - Added `Cabal` support

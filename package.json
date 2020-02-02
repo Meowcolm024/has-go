@@ -2,7 +2,7 @@
 	"name": "has-go",
 	"displayName": "Haskell Runner",
 	"description": "A simple extension to run haskell file",
-	"version": "0.2.3",
+	"version": "0.2.4",
 	"publisher": "Meowcolm024",
 	"license": "MIT",
 	"repository": {
@@ -76,7 +76,7 @@
 						"Stack",
 						"Cabal"
 					],
-					"default": "stack",
+					"default": "Stack",
 					"description": "Select the Haskell tool will be used"
 				}
 			}
