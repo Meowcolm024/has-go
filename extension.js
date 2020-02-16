@@ -74,6 +74,7 @@ function activate(context) {
 		let a = vscode.workspace.workspaceFolders[0].uri.path
 		let b = vscode.window.activeTextEditor.document.fileName
 		let c = b.replace(a + "/", "")
+		/*
 		const options = {
 			ignoreFocusOut: true,
 			password: false,
@@ -87,6 +88,8 @@ function activate(context) {
 				terminal.sendText('ghc ' + c + ' ' + extra);
 			}
 		});
+		*/
+		terminal.sendText('ghc ' + c);
 		terminal.show();
 	});
 

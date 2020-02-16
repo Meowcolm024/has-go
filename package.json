@@ -57,9 +57,14 @@
 		],
 		"menus": {
 			"commandPalette": [{
-				"command": "has-go.runfile",
-				"when": "editorLangId == haskell"
-			}]
+					"command": "has-go.runfile",
+					"when": "editorLangId == haskell"
+				},
+				{
+					"command": "has-go.compliefile",
+					"when": "editorLangId == haskell"
+				}
+			]
 		},
 		"configuration": {
 			"title": "Haskell Runner",
