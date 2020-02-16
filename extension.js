@@ -33,7 +33,7 @@ function activate(context) {
 			if (ov_arg.trim() == "") {
 				terminal.sendText('ghci ' + b);
 			} else {
-				terminal.sendText('ghci ' + ov_arg);
+				terminal.sendText('ghci ' + ov_arg.replace('${current}', b));
 			};
 		} else {
 			terminal.sendText('ghci');
@@ -54,6 +54,18 @@ function activate(context) {
 		let terminal = vscode.window.createTerminal(tool + " Run");
 		const stack_args = vscode.workspace.getConfiguration().get('has-go.stackArgs');
 		terminal.sendText(tool.toLowerCase() + ' run ' + stack_args);
+		terminal.show();
+	});
+
+	let stackBuild = vscode.commands.registerCommand('has-go.stackbuild', function () {
+		let terminal = vscode.window.createTerminal(tool + " Build");
+		terminal.sendText(tool.toLowerCase() + ' build');
+		terminal.show();
+	});
+
+	let stackTest = vscode.commands.registerCommand('has-go.stacktest', function () {
+		let terminal = vscode.window.createTerminal(tool + " Test");
+		terminal.sendText(tool.toLowerCase() + ' test');
 		terminal.show();
 	});
 
@@ -84,6 +96,8 @@ function activate(context) {
 	context.subscriptions.push(runGhci);
 	context.subscriptions.push(runHaskell);
 	context.subscriptions.push(stackRun);
+	context.subscriptions.push(stackBuild);
+	context.subscriptions.push(stackTest);
 
 }
 exports.activate = activate;

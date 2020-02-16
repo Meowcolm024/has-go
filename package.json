@@ -2,7 +2,7 @@
 	"name": "has-go",
 	"displayName": "Haskell Runner",
 	"description": "A simple extension to run haskell file",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"publisher": "Meowcolm024",
 	"license": "MIT",
 	"icon": "images/hr.png",
@@ -19,7 +19,8 @@
 	],
 	"activationEvents": [
 		"onLanguage:haskell",
-		"onCommand:has-go.ghci"
+		"onCommand:has-go.ghci",
+		"onCommand:has-go.stackbuild"
 	],
 	"main": "./extension.js",
 	"contributes": {
@@ -36,6 +37,16 @@
 			{
 				"command": "has-go.stackrun",
 				"title": "Stack Run",
+				"category": "Haskell Runner"
+			},
+			{
+				"command": "has-go.stackbuild",
+				"title": "Stack Build",
+				"category": "Haskell Runner"
+			},
+			{
+				"command": "has-go.stacktest",
+				"title": "Stack Test",
 				"category": "Haskell Runner"
 			}
 		],
@@ -75,12 +86,12 @@
 						"Cabal"
 					],
 					"default": "Stack",
-					"description": "Select the Haskell tool will be used"
+					"description": "Select the Haskell tool will be used.(Stack Run, Stack Build and Stack Test will be affected)"
 				},
 				"has-go.overrideGHCiArgs": {
 					"type": "string",
-					"default": "",
-					"description": "Override the files that GHCi loads. (You can also load multiple files) It will load the current file when it is blank. (Default is blank)"
+					"default": "${current}",
+					"description": "Override the files that GHCi loads. (You can also load multiple files) It will load the current file when it is blank. (Default is `${current}`)"
 				}
 			}
 		}

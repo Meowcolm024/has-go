@@ -4,7 +4,9 @@ All notable changes to the "has-go" extension will be documented in this file.
 
 ## [Unreleased]
 
-- Nothing
+- Added `Stack Build`
+- Added `Stack Test`
+- Updated `overrideGHCiArgs`
 
 ## [0.3.0]
 
