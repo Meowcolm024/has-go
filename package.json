@@ -20,7 +20,7 @@
 	"activationEvents": [
 		"onLanguage:haskell",
 		"onCommand:has-go.ghci",
-		"onCommand:has-go.stackbuild"
+		"onCommand:has-go.stackrun"
 	],
 	"main": "./extension.js",
 	"contributes": {
@@ -38,32 +38,13 @@
 				"command": "has-go.stackrun",
 				"title": "Stack Run",
 				"category": "Haskell Runner"
-			},
-			{
-				"command": "has-go.stackbuild",
-				"title": "Stack Build",
-				"category": "Haskell Runner"
-			},
-			{
-				"command": "has-go.stacktest",
-				"title": "Stack Test",
-				"category": "Haskell Runner"
-			},
-			{
-				"command": "has-go.compliefile",
-				"title": "Complie Haskell File",
-				"category": "Haskell Runner"
 			}
 		],
 		"menus": {
 			"commandPalette": [{
 					"command": "has-go.runfile",
 					"when": "editorLangId == haskell"
-				},
-				{
-					"command": "has-go.compliefile",
-					"when": "editorLangId == haskell"
-				}
+			}
 			]
 		},
 		"configuration": {
@@ -96,7 +77,7 @@
 						"Cabal"
 					],
 					"default": "Stack",
-					"description": "Select the Haskell tool will be used.(Stack Run, Stack Build and Stack Test will be affected)"
+					"description": "Select the Haskell tool will be used. (Stack Run will be affected)"
 				},
 				"has-go.overrideGHCiArgs": {
 					"type": "string",

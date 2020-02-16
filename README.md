@@ -14,12 +14,13 @@ You need to install `ghc` and `stack`.
 - Press `command + shift + P` to:
   - Load *GHCi* with current file: `Load GHCi`
   - Run current *Haskell* file: `Run Haskell File`
-  - Compile current file: `Complie Haskell File`
   - *Stack* / *Cabal* run: `Stack Run` *(You can use the `Cabal` tool, but it's still called stack run OwO)*
-  - *Stack* / *Cabal* build project: `Stack Build`
-  - *Stack* / *Cabal* test: `Stack Test`
 
 ## Configuartions
+
+### `Stack Args`
+
+Arguments that passed to `stack run` (or passed to your program...)
 
 ### `Override GHCi Args`
 
@@ -29,7 +30,7 @@ For example:
 "has-go.overrideGHCiArgs": "${current} Shiki.hs archer/Ishtar.hs"
 ```
 
-This config will load *current file*, the file `Shiki.hs` and the file `Ishtar.hs` in directory `archer` (relative path).
+This config will load *current file*, the file `Shiki.hs` and the file `Ishtar.hs` in directory `archer` (relative path) to GHCi.
 
 > For `${current}`, it will load the current Haskell file to GHCi.
 

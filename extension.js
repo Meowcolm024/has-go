@@ -25,7 +25,7 @@ function activate(context) {
 	// The commandId parameter must match the command field in package.json
 	let runGhci = vscode.commands.registerCommand('has-go.ghci', function () {
 		let terminal = vscode.window.createTerminal("GHCi");
-		const ov_arg = vscode.workspace.getConfiguration().get('has-go.overrideGHCiArgs');
+		let ov_arg = vscode.workspace.getConfiguration().get('has-go.overrideGHCiArgs');
 		let a = vscode.workspace.workspaceFolders[0].uri.path
 		let text = vscode.window.activeTextEditor.document
 		let b = text.fileName.replace(a + "/", "")
@@ -52,44 +52,8 @@ function activate(context) {
 
 	let stackRun = vscode.commands.registerCommand('has-go.stackrun', function () {
 		let terminal = vscode.window.createTerminal(tool + " Run");
-		const stack_args = vscode.workspace.getConfiguration().get('has-go.stackArgs');
+		let stack_args = vscode.workspace.getConfiguration().get('has-go.stackArgs');
 		terminal.sendText(tool.toLowerCase() + ' run ' + stack_args);
-		terminal.show();
-	});
-
-	let stackBuild = vscode.commands.registerCommand('has-go.stackbuild', function () {
-		let terminal = vscode.window.createTerminal(tool + " Build");
-		terminal.sendText(tool.toLowerCase() + ' build');
-		terminal.show();
-	});
-
-	let stackTest = vscode.commands.registerCommand('has-go.stacktest', function () {
-		let terminal = vscode.window.createTerminal(tool + " Test");
-		terminal.sendText(tool.toLowerCase() + ' test');
-		terminal.show();
-	});
-
-	let complieFile = vscode.commands.registerCommand('has-go.compliefile', function () {
-		let terminal = vscode.window.createTerminal("Complie Haskell"); 
-		let a = vscode.workspace.workspaceFolders[0].uri.path
-		let b = vscode.window.activeTextEditor.document.fileName
-		let c = b.replace(a + "/", "")
-		/*
-		const options = {
-			ignoreFocusOut: true,
-			password: false,
-			prompt: "Extra arguments (optional)"
-		};
-		vscode.window.showInputBox(options).then((value) => {
-			if (value === undefined) {
-				return;
-			} else {
-				const extra = value.trim();
-				terminal.sendText('ghc ' + c + ' ' + extra);
-			}
-		});
-		*/
-		terminal.sendText('ghc ' + c);
 		terminal.show();
 	});
 
@@ -120,11 +84,8 @@ function activate(context) {
 	context.subscriptions.push(runGhci);
 	context.subscriptions.push(runHaskell);
 	context.subscriptions.push(stackRun);
-	context.subscriptions.push(stackBuild);
-	context.subscriptions.push(stackTest);
-	context.subscriptions.push(complieFile);
-
 }
+
 exports.activate = activate;
 
 // this method is called when your extension is deactivated

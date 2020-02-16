@@ -7,6 +7,9 @@ All notable changes to the "has-go" extension will be documented in this file.
 - Added `Stack Build`
 - Added `Stack Test`
 - Added `Compile Haskell File`
+
+## [0.3.1]
+
 - Updated `overrideGHCiArgs`
 
 ## [0.3.0]
