@@ -69,6 +69,27 @@ function activate(context) {
 		terminal.show();
 	});
 
+	let complieFile = vscode.commands.registerCommand('has-go.compliefile', function () {
+		let terminal = vscode.window.createTerminal("Complie Haskell"); 
+		let a = vscode.workspace.workspaceFolders[0].uri.path
+		let b = vscode.window.activeTextEditor.document.fileName
+		let c = b.replace(a + "/", "")
+		const options = {
+			ignoreFocusOut: true,
+			password: false,
+			prompt: "Extra arguments (optional)"
+		};
+		vscode.window.showInputBox(options).then((value) => {
+			if (value === undefined) {
+				return;
+			} else {
+				const extra = value.trim();
+				terminal.sendText('ghc ' + c + ' ' + extra);
+			}
+		});
+		terminal.show();
+	});
+
 	if (show_ghci) {
 		let stat = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 10);
 		stat.text = "Load GHCi"
@@ -98,6 +119,7 @@ function activate(context) {
 	context.subscriptions.push(stackRun);
 	context.subscriptions.push(stackBuild);
 	context.subscriptions.push(stackTest);
+	context.subscriptions.push(complieFile);
 
 }
 exports.activate = activate;

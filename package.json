@@ -48,6 +48,11 @@
 				"command": "has-go.stacktest",
 				"title": "Stack Test",
 				"category": "Haskell Runner"
+			},
+			{
+				"command": "has-go.compliefile",
+				"title": "Complie Haskell File",
+				"category": "Haskell Runner"
 			}
 		],
 		"menus": {

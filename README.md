@@ -14,6 +14,7 @@ You need to install `ghc` and `stack`.
 - Press `command + shift + P` to:
   - Load *GHCi* with current file: `Load GHCi`
   - Run current *Haskell* file: `Run Haskell File`
+  - Compile current file: `Complie Haskell File`
   - *Stack* / *Cabal* run: `Stack Run` *(You can use the `Cabal` tool, but it's still called stack run OwO)*
   - *Stack* / *Cabal* build project: `Stack Build`
   - *Stack* / *Cabal* test: `Stack Test`
