@@ -2,7 +2,7 @@
 	"name": "has-go",
 	"displayName": "Haskell Runner",
 	"description": "A simple extension to run haskell file",
-	"version": "0.2.4",
+	"version": "0.2.5",
 	"publisher": "Meowcolm024",
 	"license": "MIT",
 	"repository": {
@@ -22,8 +22,7 @@
 	],
 	"main": "./extension.js",
 	"contributes": {
-		"commands": [
-			{
+		"commands": [{
 				"command": "has-go.ghci",
 				"title": "Load GHCi",
 				"category": "Haskell Runner"
@@ -40,12 +39,10 @@
 			}
 		],
 		"menus": {
-			"commandPalette": [
-				{
-					"command": "has-go.runfile",
-					"when": "editorLangId == haskell"
-				}
-			]
+			"commandPalette": [{
+				"command": "has-go.runfile",
+				"when": "editorLangId == haskell"
+			}]
 		},
 		"configuration": {
 			"title": "Haskell Runner",
@@ -78,6 +75,11 @@
 					],
 					"default": "Stack",
 					"description": "Select the Haskell tool will be used"
+				},
+				"has-go.overrideGHCiArgs": {
+					"type": "string",
+					"default": "",
+					"description": "Override the files that GHCi loads. (You can also load multiple files) It will load the current file when it is blank. (Default is blank)"
 				}
 			}
 		}

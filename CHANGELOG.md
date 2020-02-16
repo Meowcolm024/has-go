@@ -6,6 +6,10 @@ All notable changes to the "has-go" extension will be documented in this file.
 
 - Nothing
 
+## [0.2.5]
+
+- Able to override files that GHCi loads
+
 ## [0.2.4]
 
 - Label fix

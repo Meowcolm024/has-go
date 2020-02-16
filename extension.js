@@ -25,15 +25,19 @@ function activate(context) {
 	// The commandId parameter must match the command field in package.json
 	let runGhci = vscode.commands.registerCommand('has-go.ghci', function () {
 		let terminal = vscode.window.createTerminal("GHCi");
+		const ov_arg = vscode.workspace.getConfiguration().get('has-go.overrideGHCiArgs');
 		let a = vscode.workspace.workspaceFolders[0].uri.path
 		let text = vscode.window.activeTextEditor.document
-		let b = text.fileName
+		let b = text.fileName.replace(a + "/", "")
 		if (text.languageId == 'haskell') {
-			let c = b.replace(a + "/", "")
-			terminal.sendText('ghci ' + c);
+			if (ov_arg.trim() == "") {
+				terminal.sendText('ghci ' + b);
+			} else {
+				terminal.sendText('ghci ' + ov_arg);
+			};
 		} else {
 			terminal.sendText('ghci');
-		}
+		};
 		terminal.show();
 	});
 
@@ -85,7 +89,7 @@ function activate(context) {
 exports.activate = activate;
 
 // this method is called when your extension is deactivated
-function deactivate() {}
+function deactivate() { }
 
 module.exports = {
 	activate,
