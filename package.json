@@ -2,7 +2,7 @@
 	"name": "has-go",
 	"displayName": "Haskell Runner",
 	"description": "A simple extension to run haskell file",
-	"version": "0.3.1",
+	"version": "0.3.2",
 	"publisher": "Meowcolm024",
 	"license": "MIT",
 	"icon": "images/hr.png",
@@ -38,14 +38,18 @@
 				"command": "has-go.stackrun",
 				"title": "Stack Run",
 				"category": "Haskell Runner"
+			},
+			{
+				"command": "has-go.compilefile",
+				"title": "Compile File",
+				"category": "Haskell Runner"
 			}
 		],
 		"menus": {
 			"commandPalette": [{
-					"command": "has-go.runfile",
-					"when": "editorLangId == haskell"
-			}
-			]
+				"command": "has-go.runfile",
+				"when": "editorLangId == haskell"
+			}]
 		},
 		"configuration": {
 			"title": "Haskell Runner",
@@ -79,10 +83,24 @@
 					"default": "Stack",
 					"description": "Select the Haskell tool will be used. (Stack Run will be affected)"
 				},
+				"has-go.ghciInterpreter": {
+					"type": "string",
+					"enum": [
+						"Stack/Cabal",
+						"GHCi"
+					],
+					"default": "GHCi",
+					"description": "Stack/Cabal based on `haskellTool` setting"
+				},
 				"has-go.overrideGHCiArgs": {
 					"type": "string",
 					"default": "${current}",
 					"description": "Override the files that GHCi loads. (You can also load multiple files) It will load the current file when it is blank. (Default is `${current}`)"
+				},
+				"has-go.ghcArgs": {
+					"type": "string",
+					"default": "",
+					"description": "Arguments passed to GHC"
 				}
 			}
 		}

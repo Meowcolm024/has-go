@@ -4,9 +4,12 @@ All notable changes to the "has-go" extension will be documented in this file.
 
 ## [Unreleased]
 
-- Added `Stack Build`
-- Added `Stack Test`
+- Nothing
+
+## [0.3.2]
+
 - Added `Compile Haskell File`
+- Now you can use `stack repl` or `cabal repl`
 
 ## [0.3.1]
 

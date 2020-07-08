@@ -24,6 +24,7 @@ function activate(context) {
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
 	let runGhci = vscode.commands.registerCommand('has-go.ghci', function () {
+		let use_ghci = vscode.workspace.getConfiguration().get('has-go.ghciInterpreter') == 'GHCi'
 		let terminal = vscode.window.createTerminal("GHCi");
 		let ov_arg = vscode.workspace.getConfiguration().get('has-go.overrideGHCiArgs');
 		let a = vscode.workspace.workspaceFolders[0].uri.path
@@ -31,9 +32,17 @@ function activate(context) {
 		let b = text.fileName.replace(a + "/", "")
 		if (text.languageId == 'haskell') {
 			if (ov_arg.trim() == "") {
-				terminal.sendText('ghci ' + b);
+				if (use_ghci) {
+					terminal.sendText('ghci ' + b);
+				} else {
+					terminal.sendText(tool.toLowerCase() + ' repl ' + b);
+				}
 			} else {
-				terminal.sendText('ghci ' + ov_arg.replace('${current}', b));
+				if (use_ghci) {
+					terminal.sendText('ghci ' + ov_arg.replace('${current}', b));
+				} else {
+					terminal.sendText(tool.toLowerCase() + ' repl ' + ov_arg.replace('${current}', b));
+				}
 			};
 		} else {
 			terminal.sendText('ghci');
@@ -56,6 +65,16 @@ function activate(context) {
 		terminal.sendText(tool.toLowerCase() + ' run ' + stack_args);
 		terminal.show();
 	});
+
+	let compile = vscode.commands.registerCommand('has-go.compilefile', function () {
+		let terminal = vscode.window.createTerminal('Compile');
+		let args = vscode.workspace.getConfiguration().get('has-go.ghcArgs');
+		let a = vscode.workspace.workspaceFolders[0].uri.path
+		let b = vscode.window.activeTextEditor.document.fileName
+		let c = b.replace(a + "/", "")
+		terminal.sendText('ghc ' + c + ' ' + args);
+		terminal.show();
+	})
 
 	if (show_ghci) {
 		let stat = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 10);
@@ -84,6 +103,7 @@ function activate(context) {
 	context.subscriptions.push(runGhci);
 	context.subscriptions.push(runHaskell);
 	context.subscriptions.push(stackRun);
+	context.subscriptions.push(compile);
 }
 
 exports.activate = activate;
