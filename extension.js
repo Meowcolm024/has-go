@@ -42,9 +42,9 @@ function activate(context) {
 			if (text.languageId == 'haskell') {
 				if (ov_arg.trim() == "") {
 					if (use_ghci) {
-						terminal.sendText('ghci ' + b);
+						terminal.sendText('ghci');
 					} else {
-						terminal.sendText(tool.toLowerCase() + ' repl ' + b);
+						terminal.sendText(tool.toLowerCase() + ' repl');
 					}
 				} else {
 					if (use_ghci) {
@@ -58,7 +58,7 @@ function activate(context) {
 			};
 			terminal.show();
 		} else if (config.get('has-go.reuseTerminal')) {
-			curr_ter.sendText(':l ' + ov_arg.replace('${current}', b));
+			curr_ter.sendText(':l ' + b);
 		};
 	});
 

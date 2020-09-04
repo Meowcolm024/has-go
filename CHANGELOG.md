@@ -6,6 +6,11 @@ All notable changes to the "has-go" extension will be documented in this file.
 
 - Nothing
 
+## [0.4.0]
+
+- Now if `Override GHCi Args` is empty, it will starts GHCi only.
+- bug fix
+
 ## [0.3.3]
 
 - Added `Reuse Terminal` in configs to reload Haskell file in current GHCi terminal.
