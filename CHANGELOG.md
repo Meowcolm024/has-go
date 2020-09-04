@@ -6,6 +6,10 @@ All notable changes to the "has-go" extension will be documented in this file.
 
 - Nothing
 
+## [0.3.3]
+
+- Added `Reuse Terminal` in configs to reload Haskell file in current GHCi terminal.
+
 ## [0.3.2]
 
 - Added `Compile Haskell File`

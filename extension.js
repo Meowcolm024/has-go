@@ -3,10 +3,13 @@
 const vscode = require('vscode');
 
 // Load config
-const show_ghci = vscode.workspace.getConfiguration().get('has-go.loadGHCiButton');
-const show_run = vscode.workspace.getConfiguration().get('has-go.runFileButton');
-const show_stack = vscode.workspace.getConfiguration().get('has-go.stackRunButton');
-const tool = vscode.workspace.getConfiguration().get('has-go.haskellTool');
+const config = vscode.workspace.getConfiguration()
+const show_ghci = config.get('has-go.loadGHCiButton');
+const show_run = config.get('has-go.runFileButton');
+const show_stack = config.get('has-go.stackRunButton');
+const tool = config.get('has-go.haskellTool');
+
+var curr_ter = undefined;
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -20,34 +23,43 @@ function activate(context) {
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "has-go" is now active!');
 
+	// vscode.window.onDidChangeActiveTerminal
+	vscode.window.onDidChangeActiveTerminal(e => {
+		curr_ter = e;
+	});
+
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
 	let runGhci = vscode.commands.registerCommand('has-go.ghci', function () {
-		let use_ghci = vscode.workspace.getConfiguration().get('has-go.ghciInterpreter') == 'GHCi'
-		let terminal = vscode.window.createTerminal("GHCi");
-		let ov_arg = vscode.workspace.getConfiguration().get('has-go.overrideGHCiArgs');
-		let a = vscode.workspace.workspaceFolders[0].uri.path
+		let use_ghci = config.get('has-go.ghciInterpreter') == 'GHCi'
+		let ov_arg = config.get('has-go.overrideGHCiArgs');
 		let text = vscode.window.activeTextEditor.document
-		let b = text.fileName.replace(a + "/", "")
-		if (text.languageId == 'haskell') {
-			if (ov_arg.trim() == "") {
-				if (use_ghci) {
-					terminal.sendText('ghci ' + b);
+		let b = text.fileName.replace(vscode.workspace.workspaceFolders[0].uri.path + "/", "")
+
+		if (curr_ter == undefined || curr_ter.name != 'GHCi' || !config.get('has-go.reuseTerminal')) {
+			let terminal = vscode.window.createTerminal("GHCi");
+			if (text.languageId == 'haskell') {
+				if (ov_arg.trim() == "") {
+					if (use_ghci) {
+						terminal.sendText('ghci ' + b);
+					} else {
+						terminal.sendText(tool.toLowerCase() + ' repl ' + b);
+					}
 				} else {
-					terminal.sendText(tool.toLowerCase() + ' repl ' + b);
-				}
+					if (use_ghci) {
+						terminal.sendText('ghci ' + ov_arg.replace('${current}', b));
+					} else {
+						terminal.sendText(tool.toLowerCase() + ' repl ' + ov_arg.replace('${current}', b));
+					}
+				};
 			} else {
-				if (use_ghci) {
-					terminal.sendText('ghci ' + ov_arg.replace('${current}', b));
-				} else {
-					terminal.sendText(tool.toLowerCase() + ' repl ' + ov_arg.replace('${current}', b));
-				}
+				terminal.sendText('ghci');
 			};
-		} else {
-			terminal.sendText('ghci');
+			terminal.show();
+		} else if (config.get('has-go.reuseTerminal')) {
+			curr_ter.sendText(':l ' + ov_arg.replace('${current}', b));
 		};
-		terminal.show();
 	});
 
 	let runHaskell = vscode.commands.registerCommand('has-go.runfile', function () {

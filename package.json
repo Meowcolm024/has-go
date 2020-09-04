@@ -2,7 +2,7 @@
 	"name": "has-go",
 	"displayName": "Haskell Runner",
 	"description": "A simple extension to run haskell file",
-	"version": "0.3.2",
+	"version": "0.3.3",
 	"publisher": "Meowcolm024",
 	"license": "MIT",
 	"icon": "images/hr.png",
@@ -24,7 +24,8 @@
 	],
 	"main": "./extension.js",
 	"contributes": {
-		"commands": [{
+		"commands": [
+			{
 				"command": "has-go.ghci",
 				"title": "Load GHCi",
 				"category": "Haskell Runner"
@@ -46,10 +47,12 @@
 			}
 		],
 		"menus": {
-			"commandPalette": [{
-				"command": "has-go.runfile",
-				"when": "editorLangId == haskell"
-			}]
+			"commandPalette": [
+				{
+					"command": "has-go.runfile",
+					"when": "editorLangId == haskell"
+				}
+			]
 		},
 		"configuration": {
 			"title": "Haskell Runner",
@@ -101,6 +104,11 @@
 					"type": "string",
 					"default": "",
 					"description": "Arguments passed to GHC"
+				},
+				"has-go.reuseTerminal": {
+					"type": "boolean",
+					"default": false,
+					"description": "Reload file to current Terminal(make sure in GHCi)"
 				}
 			}
 		}
@@ -110,10 +118,10 @@
 		"test": "node ./node_modules/vscode/bin/test"
 	},
 	"devDependencies": {
-		"typescript": "^3.1.4",
-		"vscode": "^1.1.25",
+		"@types/mocha": "^2.2.42",
+		"@types/node": "^8.10.63",
 		"eslint": "^4.11.0",
-		"@types/node": "^8.10.25",
-		"@types/mocha": "^2.2.42"
+		"typescript": "^3.9.7",
+		"vscode": "^1.1.37"
 	}
 }

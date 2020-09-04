@@ -38,6 +38,10 @@ This config will load *current file*, the file `Shiki.hs`  to GHCi and enable ex
 
 Arguments passed to `ghc`
 
+### `Reuse Terminal`
+
+Reload Haskell file to current GHCi terminal.
+
 ## Source
 
 View source and report issues on [Github](https://github.com/Meowcolm024/has-go)
