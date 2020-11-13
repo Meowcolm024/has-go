@@ -33,7 +33,9 @@ For example:
 This config will load *current file*, the file `Shiki.hs`  to GHCi and enable extension `-XLambdaCase`.
 
 > For `${current}`, it will load the current Haskell file to GHCi.
+>
 > If it is an empty string, ghci without any args will be started.
+>
 > If you are using `stack repl` or `cabal` make sure they're arguments for stack or cabal!
 
 ### `GHC args`

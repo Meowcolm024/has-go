@@ -8,7 +8,7 @@ All notable changes to the "has-go" extension will be documented in this file.
 
 ## [0.4.1]
 
-- Fix for filepaths with spaces [#3](https://github.com/Meowcolm024/has-go/pull/3)
+- Fix for filepaths with spaces by @matthboers [#3](https://github.com/Meowcolm024/has-go/pull/3)
 
 ## [0.4.0]
 
