@@ -36,7 +36,7 @@ function activate(context) {
 		let ov_arg = config.get('has-go.overrideGHCiArgs');
 		let text = vscode.window.activeTextEditor.document
 		let b = text.fileName.replace('' + vscode.workspace.workspaceFolders[0].uri.path + "/", "")
-		let c = `\'${b}\'`
+		let c = `\"${b}\"`
 
 		if (curr_ter == undefined || curr_ter.name != 'GHCi' || !config.get('has-go.reuseTerminal')) {
 			let terminal = vscode.window.createTerminal("GHCi");
@@ -68,7 +68,7 @@ function activate(context) {
 		let a = vscode.workspace.workspaceFolders[0].uri.path
 		let b = vscode.window.activeTextEditor.document.fileName
 		let c = b.replace(a + "/", "")
-		let d = `\'${c}\'`
+		let d = `\"${c}\"`
 		terminal.sendText('runhaskell ' + d);
 		terminal.show();
 	});
@@ -86,7 +86,7 @@ function activate(context) {
 		let a = vscode.workspace.workspaceFolders[0].uri.path
 		let b = vscode.window.activeTextEditor.document.fileName
 		let c = b.replace(a + "/", "")
-		let d = `\'${c}\'`
+		let d = `\"${c}\"`
 		terminal.sendText('ghc ' + d + ' ' + args);
 		terminal.show();
 	})
