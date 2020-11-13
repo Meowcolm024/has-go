@@ -35,7 +35,8 @@ function activate(context) {
 		let use_ghci = config.get('has-go.ghciInterpreter') == 'GHCi'
 		let ov_arg = config.get('has-go.overrideGHCiArgs');
 		let text = vscode.window.activeTextEditor.document
-		let b = text.fileName.replace(vscode.workspace.workspaceFolders[0].uri.path + "/", "")
+		let b = text.fileName.replace('' + vscode.workspace.workspaceFolders[0].uri.path + "/", "")
+		let c = `\"${b}\"`
 
 		if (curr_ter == undefined || curr_ter.name != 'GHCi' || !config.get('has-go.reuseTerminal')) {
 			let terminal = vscode.window.createTerminal("GHCi");
@@ -48,9 +49,9 @@ function activate(context) {
 					}
 				} else {
 					if (use_ghci) {
-						terminal.sendText('ghci ' + ov_arg.replace('${current}', b));
+						terminal.sendText('ghci ' + ov_arg.replace('${current}', c));
 					} else {
-						terminal.sendText(tool.toLowerCase() + ' repl ' + ov_arg.replace('${current}', b));
+						terminal.sendText(tool.toLowerCase() + ' repl ' + ov_arg.replace('${current}', c));
 					}
 				};
 			} else {
@@ -58,7 +59,7 @@ function activate(context) {
 			};
 			terminal.show();
 		} else if (config.get('has-go.reuseTerminal')) {
-			curr_ter.sendText(':l ' + b);
+			curr_ter.sendText(':l ' + c);
 		};
 	});
 
@@ -67,7 +68,8 @@ function activate(context) {
 		let a = vscode.workspace.workspaceFolders[0].uri.path
 		let b = vscode.window.activeTextEditor.document.fileName
 		let c = b.replace(a + "/", "")
-		terminal.sendText('runhaskell ' + c);
+		let d = `\"${c}\"`
+		terminal.sendText('runhaskell ' + d);
 		terminal.show();
 	});
 
@@ -84,7 +86,8 @@ function activate(context) {
 		let a = vscode.workspace.workspaceFolders[0].uri.path
 		let b = vscode.window.activeTextEditor.document.fileName
 		let c = b.replace(a + "/", "")
-		terminal.sendText('ghc ' + c + ' ' + args);
+		let d = `\"${c}\"`
+		terminal.sendText('ghc ' + d + ' ' + args);
 		terminal.show();
 	})
 
