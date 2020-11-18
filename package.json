@@ -107,7 +107,7 @@
 				},
 				"has-go.reuseTerminal": {
 					"type": "boolean",
-					"default": false,
+					"default": true,
 					"description": "Reload file to current Terminal(make sure in GHCi)"
 				}
 			}
