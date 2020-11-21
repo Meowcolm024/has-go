@@ -40,7 +40,7 @@ function activate(context) {
 
 		if (curr_ter == undefined || curr_ter.name != 'GHCi' || !config.get('has-go.reuseTerminal')) {
 			let terminal = vscode.window.createTerminal("GHCi");
-			if (text.languageId == 'haskell') {
+			if (text.languageId == 'haskell' || text.languageId == 'literate haskell') {
 				if (ov_arg.trim() == "") {
 					if (use_ghci) {
 						terminal.sendText('ghci');

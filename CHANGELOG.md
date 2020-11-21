@@ -4,6 +4,11 @@ All notable changes to the "has-go" extension will be documented in this file.
 
 ## [Unreleased]
 
+- `upadte :: Void` :)
+
+## [0.4.2]
+
+- `Literate Haskell` support (i.e `.lhs`)
 - `Reuse Terminal` now is `on` by default.
 
 ## [0.4.1]
