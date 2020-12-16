@@ -6,6 +6,10 @@ All notable changes to the "has-go" extension will be documented in this file.
 
 - `upadte :: Void` :)
 
+## [0.4.3]
+
+- Fix *backsplash* problem issue: [#4](https://github.com/Meowcolm024/has-go/issues/4)
+
 ## [0.4.2]
 
 - `Literate Haskell` support (i.e `.lhs`)

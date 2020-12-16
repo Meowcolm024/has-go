@@ -59,7 +59,7 @@ function activate(context) {
 			};
 			terminal.show();
 		} else if (config.get('has-go.reuseTerminal')) {
-			curr_ter.sendText(':l ' + c);
+			curr_ter.sendText(':l ' + c.split('\\').join('\\\\'));
 		};
 	});
 
