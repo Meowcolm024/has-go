@@ -4,7 +4,11 @@ All notable changes to the "has-go" extension will be documented in this file.
 
 ## [Unreleased]
 
-- `upadte :: Void` :)
+- `upadte :: Void` :D
+
+## [0.4.4]
+
+- Now `stack runghc` can be used for `Run File`.
 
 ## [0.4.3]
 

@@ -69,7 +69,11 @@ function activate(context) {
 		let b = vscode.window.activeTextEditor.document.fileName
 		let c = b.replace(a + "/", "")
 		let d = `\"${c}\"`
-		terminal.sendText('runhaskell ' + d);
+		if (config.get('has-go.ghciInterpreter') != 'GHCi' && config.get('has-go.haskellTool') == 'Stack') {
+			terminal.sendText('stack runghc ' + d);
+		} else {
+			terminal.sendText('runhaskell ' + d);
+		}
 		terminal.show();
 	});
 

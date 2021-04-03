@@ -7,7 +7,7 @@ A simple extension to run *Haskell*.
 
 ## Requirements
 
-You need to install `ghc` and `stack`.
+You need to (at least) install `ghc`. For the extension to be fully functional, you need to install `cabal` and `stack`.
 
 ## Features
 
@@ -45,6 +45,12 @@ Arguments passed to `ghc`
 ### `Reuse Terminal`
 
 Reload Haskell file to current GHCi terminal.
+
+## Note for `Run File`
+
+To use `stack runghc`: Set `ghciInterpreter` to `Stack/Cabal` **and** `haskellTool` to `Stack`
+
+Otherwise, `runhaskell` is called for the current file.
 
 ## Source
 

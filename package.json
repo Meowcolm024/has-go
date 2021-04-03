@@ -2,7 +2,7 @@
 	"name": "has-go",
 	"displayName": "Haskell Runner",
 	"description": "A simple extension to run haskell file",
-	"version": "0.4.3",
+	"version": "0.4.4",
 	"publisher": "Meowcolm024",
 	"license": "MIT",
 	"icon": "images/hr.png",
@@ -85,7 +85,7 @@
 						"Cabal"
 					],
 					"default": "Stack",
-					"description": "Select the Haskell tool will be used. (Stack Run will be affected)"
+					"description": "Select the Haskell tool will be used. (Stack Run and Run File will be affected)"
 				},
 				"has-go.ghciInterpreter": {
 					"type": "string",
@@ -94,7 +94,7 @@
 						"GHCi"
 					],
 					"default": "GHCi",
-					"description": "Stack/Cabal based on `haskellTool` setting"
+					"description": "Select GHCi tool. This also affect the Run File setting (stack runghc). (Stack/Cabal based on `haskellTool` setting)"
 				},
 				"has-go.overrideGHCiArgs": {
 					"type": "string",
