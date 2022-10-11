@@ -1,4 +1,11 @@
-# Haskell Runner
+# [Deprecated] Haskell Runner
+
+## Haskell Runner is now deprecated!!!
+## Please move to **[Haskell Runner 2](https://github.com/Meowcolm024/haskell-runner-2/)** 
+
+Markerplace for [Haskell Runner 2](https://marketplace.visualstudio.com/items?itemName=Meowcolm024.runner2)
+
+---
 
 ![GitHub](https://img.shields.io/github/license/meowcolm024/has-go)
 ![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/Meowcolm024.has-go)
